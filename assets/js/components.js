@@ -1,17 +1,26 @@
+// assets/js/components.js
+// ATUALIZADO: Controlando o <button> do menu e 'aria-expanded'
 
 import { projectsDB } from './database.js';
 
+// Lógica do Menu Hambúrguer (ATUALIZADA)
 export function initHamburgerMenu() {
     const hamburger = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
 
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
+            // Alterna a classe 'active' para mostrar/esconder o menu
             navLinks.classList.toggle('active');
+            
+            // ATUALIZAÇÃO WCAG: Informa ao leitor de tela se o menu está aberto ou fechado
+            const isExpanded = navLinks.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', isExpanded);
         });
     }
 }
 
+// Lógica do Modal (O seletor '.close-button' já funciona com o <button>)
 export function initModal() {
     document.body.addEventListener('click', function(event) {
         
@@ -21,7 +30,7 @@ export function initModal() {
             showVolunteerModal(projectId);
         }
         
-        // Se clicar no botão de fechar (dentro do modal)
+        // Se clicar no botão de fechar (agora é um <button> real)
         if (event.target && event.target.classList.contains('close-button')) {
             closeVolunteerModal();
         }
