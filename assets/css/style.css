@@ -1,4 +1,6 @@
+/* assets/css/style.css - VERSÃO FINAL COMPLETA (ENTREGA II, III e IV) */
 
+/* --- 1. SISTEMA DE DESIGN (REQUISITO) --- */
 :root {
     /* Paleta de 8 Cores (Requisito) */
     --color-primary: #005a9c;
@@ -11,26 +13,56 @@
     --color-neutral-light: #f4f4f4;
     --color-white: #ffffff;
     --color-border: #dee2e6;
+    
+    /* Nomes semânticos para MODO ESCURO (Entrega IV) */
+    --color-bg: var(--color-neutral-light);
+    --color-bg-card: var(--color-white);
+    --color-text-primary: var(--color-neutral-dark);
+    --color-text-secondary: #555;
+    --color-border-default: var(--color-border);
+    --color-header-bg: var(--color-white);
+    --color-footer-bg: var(--color-neutral-dark);
+    --color-footer-text: var(--color-white);
+    --color-shadow: rgba(0,0,0,0.08);
 
+    /* Tipografia Hierárquica */
     --font-family-base: 'Helvetica Neue', Arial, sans-serif;
-    --font-size-xs: 0.75rem;  /* 12px */
-    --font-size-sm: 0.875rem; /* 14px */
-    --font-size-base: 1rem;   /* 16px */
-    --font-size-md: 1.25rem;  /* 20px */
-    --font-size-lg: 1.75rem;  /* 28px */
-    --font-size-xl: 2.25rem;  /* 36px */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.25rem;
+    --font-size-lg: 1.75rem;
+    --font-size-xl: 2.25rem;
 
-    --space-1: 0.25rem; /* 4px */
-    --space-2: 0.5rem;   /* 8px */
-    --space-3: 1rem;    /* 16px */
-    --space-4: 1.5rem;  /* 24px */
-    --space-5: 2rem;    /* 32px */
-    --space-6: 3rem;    /* 48px */
+    /* Sistema de Espaçamento Modular */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 2rem;
+    --space-6: 3rem;
 
+    /* Outros */
     --border-radius: 8px;
-    --box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --box-shadow: 0 4px 12px var(--color-shadow);
 }
 
+/* --- MODO ESCURO (ENTREGA IV) --- */
+body.dark-mode {
+    --color-bg: #121212;
+    --color-bg-card: #1e1e1e;
+    --color-text-primary: #f4f4f4;
+    --color-text-secondary: #aaa;
+    --color-border-default: #333;
+    --color-header-bg: #1e1e1e;
+    --color-footer-bg: #111;
+    --color-footer-text: #f4f4f4;
+    --color-shadow: rgba(255,255,255,0.05);
+    --color-primary-light: #2a2a2a; /* Alto contraste para modo escuro */
+}
+
+
+/* --- 2. RESET BÁSICO E CONFIGURAÇÕES GLOBAIS --- */
 * {
     margin: 0;
     padding: 0;
@@ -41,22 +73,16 @@ body {
     font-family: var(--font-family-base);
     font-size: var(--font-size-base);
     line-height: 1.6;
-    color: var(--color-neutral-dark);
-    background-color: var(--color-neutral-light);
+    /* Variáveis do Modo Escuro aplicadas */
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; transition: all 0.3s ease; }
 
-a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
+/* --- 3. SISTEMA DE GRID (12 COLUNAS) E LAYOUT RESPONSIVO --- */
 .container {
     width: 100%;
     padding-right: var(--space-3);
@@ -64,47 +90,21 @@ a {
     margin-right: auto;
     margin-left: auto;
 }
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px; 
-    margin-left: -15px;
-}
-[class^="col-"] {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-}
+.row { display: flex; flex-wrap: wrap; margin: 0 -15px; }
+[class^="col-"] { width: 100%; padding: 0 15px; }
 @media (min-width: 576px) { .container { max-width: 540px; } }
 @media (min-width: 768px) {
     .container { max-width: 720px; }
-    .col-md-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
-    .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
-    .col-md-3 { flex: 0 0 25%; max-width: 25%; }
     .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
     .col-md-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
     .col-md-6 { flex: 0 0 50%; max-width: 50%; }
     .col-md-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
-    .col-md-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
-    .col-md-9 { flex: 0 0 75%; max-width: 75%; }
-    .col-md-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
-    .col-md-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
-    .col-md-12 { flex: 0 0 100%; max-width: 100%; }
 }
 @media (min-width: 992px) {
     .container { max-width: 960px; }
-    .col-lg-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
-    .col-lg-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
-    .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
     .col-lg-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
-    .col-lg-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
-    .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
-    .col-lg-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
     .col-lg-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
-    .col-lg-9 { flex: 0 0 75%; max-width: 75%; }
     .col-lg-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
-    .col-lg-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
-    .col-lg-12 { flex: 0 0 100%; max-width: 100%; }
 }
 @media (min-width: 1200px) { .container { max-width: 1140px; } }
 @media (min-width: 1400px) { .container { max-width: 1320px; } }
@@ -116,85 +116,57 @@ body {
     min-height: 100vh;
 }
 header {
-    background: var(--color-white);
-    padding: var(--space-3) 0;
+    background: var(--color-header-bg);
     box-shadow: var(--box-shadow);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: var(--space-3) 0;
+    position: sticky; top: 0; z-index: 100;
 }
 main {
     padding: var(--space-5) 0; 
 }
 footer {
-    background: var(--color-neutral-dark);
-    color: var(--color-white);
+    background: var(--color-footer-bg);
+    color: var(--color-footer-text);
     padding: var(--space-5) 0;
     text-align: center;
 }
 
+/* --- 5. NAVEGAÇÃO SOFISTICADA (MENU HAMBÚRGUER) --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.nav-logo {
-    font-size: var(--font-size-md);
-    font-weight: bold;
-    color: var(--color-primary);
-}
-.nav-links {
-    list-style: none;
-    display: flex; 
-}
-.nav-links li {
-    margin-left: var(--space-4);
-}
+.nav-logo { font-size: var(--font-size-md); font-weight: bold; color: var(--color-primary); }
+.nav-links { list-style: none; display: flex; }
+.nav-links li { margin-left: var(--space-4); }
 .nav-links a {
-    color: var(--color-neutral-dark);
+    color: var(--color-text-primary);
     font-weight: bold;
     padding-bottom: var(--space-2);
     border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
 }
 .nav-links a:hover, .nav-links a.active {
     color: var(--color-primary);
     border-bottom-color: var(--color-primary);
 }
-.hamburger-menu {
-    display: none; 
-    cursor: pointer;
-    font-size: var(--font-size-lg);
-    color: var(--color-primary);
-}
-.dropdown {
-    position: relative;
-}
+.hamburger-menu { display: none; cursor: pointer; font-size: var(--font-size-lg); color: var(--color-primary); }
+.dropdown { position: relative; }
 .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background: var(--color-white);
+    background: var(--color-header-bg);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
     padding: var(--space-2) 0;
     list-style: none;
     min-width: 180px;
 }
-.dropdown-menu a {
-    display: block;
-    padding: var(--space-2) var(--space-3);
-    color: var(--color-neutral-dark);
-    border-bottom: none;
-}
-.dropdown-menu a:hover {
-    background-color: var(--color-primary-light);
-    border-bottom: none;
-}
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
+.dropdown-menu a { display: block; padding: var(--space-2) var(--space-3); color: var(--color-text-primary); border-bottom: none; }
+.dropdown-menu a:hover { background-color: var(--color-primary-light); border-bottom: none; }
+.dropdown:hover .dropdown-menu { display: block; }
 @media (max-width: 991.98px) {
     .nav-links {
         display: none; 
@@ -203,24 +175,14 @@ footer {
         position: absolute;
         top: 70px; 
         left: 0;
-        background: var(--color-white);
+        background: var(--color-header-bg);
         box-shadow: var(--box-shadow);
         padding: var(--space-3);
     }
-    .nav-links.active {
-        display: flex; 
-    }
-    .nav-links li {
-        margin: var(--space-2) 0;
-    }
-    .hamburger-menu {
-        display: block; 
-    }
-    .dropdown-menu {
-        position: static;
-        box-shadow: none;
-        padding-left: var(--space-3);
-    }
+    .nav-links.active { display: flex; }
+    .nav-links li { margin: var(--space-2) 0; }
+    .hamburger-menu { display: block; }
+    .dropdown-menu { position: static; box-shadow: none; padding-left: var(--space-3); }
 }
 
 /* --- 6. COMPONENTES DE INTERFACE --- */
@@ -236,66 +198,28 @@ footer {
     border-radius: var(--border-radius);
     transition: all 0.3s ease;
 }
-.btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-}
-.btn:hover {
-    background-color: var(--color-primary-dark);
-    transform: translateY(-2px);
-}
-.btn:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px var(--color-primary-light);
-}
-.btn:active {
-    transform: translateY(0);
-}
-.btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
+.btn-primary { background-color: var(--color-primary); color: var(--color-white); }
+.btn:hover { background-color: var(--color-primary-dark); transform: translateY(-2px); }
+.btn:focus { outline: none; box-shadow: 0 0 0 3px var(--color-primary-light); }
+.btn:active { transform: translateY(0); }
 .project-card {
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-default);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     overflow: hidden;
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
     margin-bottom: var(--space-4); 
 }
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-}
-.project-card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-.project-card-body {
-    padding: var(--space-4);
-    flex-grow: 1; 
-    display: flex;
-    flex-direction: column;
-}
-.project-card h3 {
-    font-size: var(--font-size-md);
-    margin-bottom: var(--space-2);
-}
-.project-card p {
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--space-3);
-}
-.project-card-footer {
-    margin-top: auto; 
-}
-.tag-container {
-    margin-bottom: var(--space-3);
-}
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px var(--color-shadow); }
+.project-card-image { width: 100%; height: 200px; object-fit: cover; }
+.project-card-body { padding: var(--space-4); flex-grow: 1; display: flex; flex-direction: column; }
+.project-card h3 { font-size: var(--font-size-md); margin-bottom: var(--space-2); }
+.project-card p { font-size: var(--font-size-sm); margin-bottom: var(--space-3); color: var(--color-text-secondary); }
+.project-card-footer { margin-top: auto; }
+.tag-container { margin-bottom: var(--space-3); }
 .badge {
     display: inline-block;
     padding: var(--space-1) var(--space-2);
@@ -307,187 +231,93 @@ footer {
     margin-right: var(--space-1);
     margin-bottom: var(--space-1);
 }
-.form-group {
-    margin-bottom: var(--space-3);
-}
-.form-group label {
-    display: block;
-    margin-bottom: var(--space-2);
-    font-weight: bold;
-}
+.form-group { margin-bottom: var(--space-3); }
+.form-group label { display: block; margin-bottom: var(--space-2); font-weight: bold; }
 .form-control {
     display: block;
     width: 100%;
     padding: var(--space-2) var(--space-3);
     font-size: var(--font-size-base);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-default);
     border-radius: var(--border-radius);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
     transition: all 0.3s ease;
 }
 .form-control:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--color-primary-light);
+    background-color: var(--color-bg-card);
 }
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; justify-content: center; align-items: center;
     z-index: 1000;
 }
 .modal-content {
-    background: var(--color-white);
+    background: var(--color-bg-card);
     padding: var(--space-5);
     border-radius: var(--border-radius);
     text-align: center;
     max-width: 500px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px var(--color-shadow);
 }
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #aaa;
+    position: absolute; top: 10px; right: 15px;
+    font-size: 2rem; cursor: pointer; color: #aaa;
 }
-.close-button:hover {
-    color: #333;
-}
+.close-button:hover { color: var(--color-text-primary); }
 
-.text-center {
-    text-align: center;
-}
-.mt-5 {
-    margin-top: var(--space-5);
-}
-.mb-4 {
-    margin-bottom: var(--space-4);
-}
+/* --- 7. CLASSES UTILITÁRIAS --- */
+.text-center { text-align: center; }
+.mt-5 { margin-top: var(--space-5); }
+.mb-4 { margin-bottom: var(--space-4); }
 
-.hero-section {
-    background-color: var(--color-primary-light);
-    padding: var(--space-6) 0;
-}
-.hero-title {
-    font-size: var(--font-size-xl);
-    font-weight: bold;
-    color: var(--color-primary-dark);
-    margin-bottom: var(--space-3);
-}
-.hero-subtitle {
-    font-size: var(--font-size-md);
-    color: var(--color-neutral-dark);
-    margin-bottom: var(--space-5);
-}
-.btn-lg {
-    padding: var(--space-3) var(--space-5);
-    font-size: var(--font-size-base);
-}
-.btn-secondary {
-    background-color: transparent;
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-}
-.btn-secondary:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    transform: translateY(-2px);
-}
-.btn-secondary:focus {
-    box-shadow: 0 0 0 3px var(--color-primary-light);
-}
-.impact-section {
-    background-color: var(--color-white);
-    padding: var(--space-6) 0;
-    margin-top: var(--space-5);
-}
-.section-title {
-    margin-bottom: var(--space-5);
-}
-.impact-card {
-    padding: var(--space-4);
-}
-.impact-card h3 {
-    font-size: var(--font-size-xl);
-    font-weight: bold;
-    color: var(--color-primary);
-    margin-bottom: var(--space-2);
-}
-.impact-card p {
-    font-size: var(--font-size-base);
-    color: var(--color-neutral-dark);
-}
-.cta-section {
-    background-color: var(--color-primary-dark);
-    color: var(--color-white);
-    padding: var(--space-6) 0;
-    margin-top: var(--space-5);
-}
-.cta-section h2 {
-    color: var(--color-white);
-    border-bottom: none;
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--space-3);
-}
-.cta-section .btn-secondary {
-    background-color: var(--color-white);
-    border-color: var(--color-white);
-    color: var(--color-primary-dark);
-    font-weight: bold;
-}
-.cta-section .btn-secondary:hover {
-    background-color: var(--color-neutral-light);
-    border-color: var(--color-neutral-light);
-    transform: translateY(-2px);
-}
+/* --- 8. ESTILOS DAS SEÇÕES DO INDEX --- */
+.hero-section { background-color: var(--color-primary-light); padding: var(--space-6) 0; }
+.hero-title { font-size: var(--font-size-xl); font-weight: bold; color: var(--color-primary-dark); margin-bottom: var(--space-3); }
+.hero-subtitle { font-size: var(--font-size-md); color: var(--color-neutral-dark); margin-bottom: var(--space-5); }
+.btn-lg { padding: var(--space-3) var(--space-5); font-size: var(--font-size-base); }
+.btn-secondary { background-color: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+.btn-secondary:hover { background-color: var(--color-primary); color: var(--color-white); transform: translateY(-2px); }
+.btn-secondary:focus { box-shadow: 0 0 0 3px var(--color-primary-light); }
+.impact-section { background-color: var(--color-bg-card); padding: var(--space-6) 0; margin-top: var(--space-5); }
+.section-title { margin-bottom: var(--space-5); }
+.impact-card { padding: var(--space-4); }
+.impact-card h3 { font-size: var(--font-size-xl); font-weight: bold; color: var(--color-primary); margin-bottom: var(--space-2); }
+.impact-card p { font-size: var(--font-size-base); color: var(--color-text-primary); }
+.cta-section { background-color: var(--color-primary-dark); color: var(--color-white); padding: var(--space-6) 0; margin-top: var(--space-5); }
+.cta-section h2 { color: var(--color-white); border-bottom: none; font-size: var(--font-size-lg); margin-bottom: var(--space-3); }
+.cta-section .btn-secondary { background-color: var(--color-white); border-color: var(--color-white); color: var(--color-primary-dark); font-weight: bold; }
+.cta-section .btn-secondary:hover { background-color: var(--color-neutral-light); border-color: var(--color-neutral-light); transform: translateY(-2px); }
 
-.page-section {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-}
-.page-section.active {
-    display: block;
-    opacity: 1;
-}
-.form-group {
-    position: relative;
-}
-.error-message {
-    color: var(--color-danger);
-    font-size: var(--font-size-sm);
-    display: none; 
-    margin-top: var(--space-1);
-}
-.form-control:invalid.touched + .error-message {
-    display: block;
-}
-.form-control:invalid.touched {
-    border-color: var(--color-danger);
-    background-color: #fff8f8;
-}
+/* --- 10. LÓGICA DE SPA E VALIDAÇÃO (ENTREGA III) --- */
+.page-section { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
+.page-section.active { display: block; opacity: 1; }
+.form-group { position: relative; }
+.error-message { color: var(--color-danger); font-size: var(--font-size-sm); display: none; margin-top: var(--space-1); }
+.form-control:invalid.touched + .error-message { display: block; }
+.form-control:invalid.touched { border-color: var(--color-danger); background-color: #fff8f8; }
+.loading-spinner { display: block; width: 50px; height: 50px; border: 6px solid var(--color-primary-light); border-top-color: var(--color-primary); border-radius: 50%; margin: 2rem auto; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-/* Spinner de Carregamento */
-.loading-spinner {
-    display: block;
-    width: 50px;
-    height: 50px;
-    border: 6px solid var(--color-primary-light);
-    border-top-color: var(--color-primary);
-    border-radius: 50%;
-    margin: 2rem auto;
-    animation: spin 1s linear infinite;
-}
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+/* --- 12. SWITCH MODO ESCURO (ENTREGA IV) --- */
+.theme-switch-wrapper { display: flex; align-items: center; margin: 0 1rem; }
+.theme-label { margin-left: var(--space-2); font-size: var(--font-size-sm); font-weight: bold; color: var(--color-text-secondary); }
+.theme-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; }
+.slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+input:checked + .slider { background-color: var(--color-primary); }
+input:checked + .slider:before { transform: translateX(20px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+@media (max-width: 991.98px) { .theme-label { display: none; } }
+
+/* --- MODO ESCURO - FORMULÁRIO (CORREÇÃO DE ALTO CONTRASTE) --- */
+body.dark-mode .form-control:invalid.touched {
+    background-color: #332020; /* Fundo de erro para modo escuro */
 }
