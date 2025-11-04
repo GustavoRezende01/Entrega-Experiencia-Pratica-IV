@@ -6,12 +6,14 @@ import { initRouter } from './router.js';
 import { initHamburgerMenu, initModal } from './components.js';
 import { renderProjects, createLoadingSpinner } from './templates.js';
 import { initFormValidation } from './validation.js';
+import { initTheme } from './theme.js'; // <-- 1. IMPORTA O NOVO MÓDULO
 
 // Inicializa a aplicação quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializa os componentes de UI
     initHamburgerMenu();
     initModal();
+    initTheme(); // <-- 2. INICIALIZA A LÓGICA DO TEMA
     
     // Inicializa o roteador da SPA
     initRouter();
