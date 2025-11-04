@@ -321,3 +321,28 @@ input:checked + .slider:before { transform: translateX(20px); }
 body.dark-mode .form-control:invalid.touched {
     background-color: #332020; /* Fundo de erro para modo escuro */
 }
+/* --- 13. ACESSIBILIDADE WCAG (ENTREGA IV) --- */
+
+/* * Foco Visível (Requisito):
+ * Mostra um "anel" de foco claro em qualquer elemento 
+ * focado via teclado (tecla TAB).
+ * :focus-visible não aparece em cliques do mouse, só no teclado.
+*/
+:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--color-primary-light);
+    border-radius: var(--border-radius);
+}
+
+/* Garante que o ícone do hambúrguer pareça um botão */
+.hamburger-menu {
+    background: transparent;
+    border: none;
+    padding: var(--space-2);
+    cursor: pointer;
+}
+.hamburger-menu i {
+    font-size: var(--font-size-lg);
+    color: var(--color-primary);
+}
